@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>articlelist</title>
+    <link rel="stylesheet" type="text/css" href="/javascripts/jquery-easyui-1.9.14/themes/metro/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/javascripts/jquery-easyui-1.9.14/themes/icon.css">
+    <script type="text/javascript" src="/javascripts/jquery-easyui-1.9.14/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery-easyui-1.9.14/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/javascripts/common_eu.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+        }
+
+        .searchbar {
+            font-size: 20px;
+            height: 36px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="searchbar">
+        <span>关键字:<input type="text" id="keyword"></span>
+        <span>分类 <select name="fid" id="fid">
+                <option value="15">亚有</option>
+                <option value="25">国</option>
+                <option value="2">亚无</option>
+                <option value="26">中文</option>
+                <option value="21">http</option>
+                <option value="4">美</option>
+            </select> </span>
+        <span>
+            <button id="search">搜索</button>
+        </span>
+        <span>最后更新:<span id="lastUpdate"></span> </span>
+    </div>
+    <table id="dg"></table>
+</body>
+<script type="text/javascript" src="/javascripts/prj/index.js"></script>
+
+</html>
