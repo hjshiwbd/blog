@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
 // const domain = "http://t66y.com/";
-const domain = "https://cl.298x.xyz/";
+const domain = "https://cl.2790x.xyz/";
 const {
     pager
 } = require('../utils/pager')
