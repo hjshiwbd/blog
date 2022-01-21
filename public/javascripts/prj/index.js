@@ -10,7 +10,7 @@ $(function() {
         title: 'title',
         width: 80,
         formatter(value, row) {
-            return `<a target="_blank" href="${row.link}">${row.title}</a>`
+            return `<a target="_blank" rel="noreferrer" href="${row.link}">${row.title}</a>`
         }
     }, {
         field: 'post_date',
