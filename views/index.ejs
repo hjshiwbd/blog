@@ -5,9 +5,6 @@
     <title>articlelist</title>
     <link rel="stylesheet" type="text/css" href="/javascripts/jquery-easyui-1.9.14/themes/metro/easyui.css">
     <link rel="stylesheet" type="text/css" href="/javascripts/jquery-easyui-1.9.14/themes/icon.css">
-    <script type="text/javascript" src="/javascripts/jquery-easyui-1.9.14/jquery.min.js"></script>
-    <script type="text/javascript" src="/javascripts/jquery-easyui-1.9.14/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="/javascripts/common_eu.js"></script>
     <style>
         body {
             margin: 0;
@@ -23,9 +20,9 @@
 </head>
 
 <body>
-    <div class="searchbar">
-        <span>关键字:<input type="text" id="keyword"></span>
-        <span>分类 <select name="fid" id="fid">
+<div class="searchbar">
+    <span>关键字:<input type="text" id="keyword"></span>
+    <span>分类 <select name="fid" id="fid">
                 <option value="15">亚有15</option>
                 <option value="25">国产25</option>
                 <option value="2">亚无2</option>
@@ -34,13 +31,18 @@
                 <option value="4">欧美4</option>
                 <option value="5">动漫5</option>
             </select> </span>
-        <span>
+    <span>
+            <button id="searchTraditional">繁体搜索</button>
             <button id="search">搜索</button>
         </span>
-        <span>最后更新:<span id="lastUpdate"></span> </span>
-    </div>
-    <table id="dg"></table>
+    <span>最后更新:<span id="lastUpdate"></span> </span>
+</div>
+<table id="dg"></table>
 </body>
+<script type="text/javascript" src="/javascripts/jquery-easyui-1.9.14/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/jquery-easyui-1.9.14/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="/javascripts/common_eu.js"></script>
+<script type="text/javascript" src="/javascripts/simple-traditional.js"></script>
 <script type="text/javascript" src="/javascripts/prj/index.js"></script>
 
 </html>

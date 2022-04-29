@@ -1,5 +1,5 @@
 const clog = console.log
-$(function() {
+$(function () {
     const url = '/crawlerdata'
     const cols = [{
         field: 'fid',
@@ -20,7 +20,7 @@ $(function() {
         field: 'author_name',
         title: 'author_name',
         width: 7,
-    }, ]
+    },]
     const options = dgSetting1({
         url,
         cols,
@@ -28,18 +28,26 @@ $(function() {
     })
     $('#fid').combobox({
         multiple: true,
-        width: 250,
+        width: 150,
+        editable: false,
         value: "",
         icons: [{
             iconCls: 'icon-clear',
-            handler: function(e) {
+            handler: function (e) {
                 $(e.data.target).combobox('clear');
             }
         }]
     })
     $('#dg').datagrid(options)
 
-    $("#search").on('click', function() {
+    $("#search").on('click', function () {
+        const keyword = $('#keyword').val()
+        $('#keyword').textbox('setValue', simplized(keyword))
+        search()
+    })
+    $('#searchTraditional').on('click', function () {
+        const keyword = $('#keyword').val()
+        $('#keyword').textbox('setValue', traditionalized(keyword))
         search()
     })
     $('#keyword').textbox({
@@ -55,7 +63,7 @@ $(function() {
             search()
         }
     })
-    $.post('/lastcrawlerdate', {}, function(r) {
+    $.post('/lastcrawlerdate', {}, function (r) {
         $('#lastUpdate').text(`${r.dd},${r.diff}天`)
     })
 })
