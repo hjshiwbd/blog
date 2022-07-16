@@ -1,4 +1,8 @@
 const clog = console.log
+const keywordAutoComplete = $('#keywordAutoComplete')//自动完成
+let keywordList = []
+const maxHistory = 20
+
 $(function () {
     const url = '/crawlerdata'
     const cols = [{
@@ -38,18 +42,21 @@ $(function () {
             }
         }]
     })
+    //初始化dg
     $('#dg').datagrid(options)
-
+    //搜索
     $("#search").on('click', function () {
         const keyword = $('#keyword').val()
         $('#keyword').textbox('setValue', simplized(keyword))
         search()
     })
+    //繁体搜索
     $('#searchTraditional').on('click', function () {
         const keyword = $('#keyword').val()
         $('#keyword').textbox('setValue', traditionalized(keyword))
         search()
     })
+    //输入框清空"x"按钮
     $('#keyword').textbox({
         icons: [{
             iconCls: 'icon-clear',
@@ -58,21 +65,134 @@ $(function () {
             }
         }]
     })
+    //点击显示历史搜索记录
+    $('#keyword').textbox('textbox').on('click', () => {
+        keywordAutoComplete.show();
+    })
+    //输入框键盘事件
     $('#keyword').textbox('textbox').on('keyup', (e) => {
+        //回车搜索
         if (e.which === 13) {
             search()
         }
+        //esc关闭历史
+        if (e.which === 27) {
+            keywordAutoComplete.hide()
+        }
     })
+    //xhr最后更新数据
     $.post('/lastcrawlerdate', {}, function (r) {
         $('#lastUpdate').text(`${r.dd},${r.diff}天`)
     })
+    //关闭历史记录
+    $(document).click(e => {
+        var showId = ['_easyui_textbox_input2', 'keywordAutoComplete']
+        var id1 = $(e.target).parent().attr('id');
+        var id2 = e.target.id;
+        if (!showId.includes(id1) && !showId.includes(id2)) {
+            keywordAutoComplete.hide()
+        }
+    })
+    //填充历史记录
+    fillAutoComplete()
 })
 
+//执行搜索
 function search() {
     const keyword = $('#keyword').val()
+    keywordListAddItem(keyword)
     const fid = $('#fid').combobox('getValues')
+    fillAutoComplete()
     $('#dg').datagrid('reload', {
         keyword,
         fid: fid ? fid.join(",") : ""
     })
 }
+
+//删除历史记录
+function keywordListRemoveItem(keyword) {
+    if (!keyword) {
+        return
+    }
+    var i = keywordList.indexOf(keyword)
+    if (i != -1) {
+        keywordList.splice(i, 1)
+    }
+    setKeywordListHeight()
+    lsSet('articleKeywordHistory', keywordList)
+}
+
+//新加历史记录
+function keywordListAddItem(keyword) {
+    if (!keyword) {
+        return
+    }
+    var i = keywordList.indexOf(keyword)
+    if (i != -1) {
+        keywordList.splice(i, 1)
+    }
+
+    if (keywordList.length == maxHistory) {
+        keywordList.pop()
+    }
+    keywordList.unshift(keyword)
+    lsSet('articleKeywordHistory', keywordList)
+}
+
+//localStorage set
+function lsGet(key) {
+    var v = localStorage.getItem(key)
+    v = JSON.parse(v)
+    return v
+}
+
+//localStorage get
+function lsSet(key, value) {
+    var v = JSON.stringify(value)
+    localStorage.setItem(key, v)
+}
+
+//填充历史记录
+function fillAutoComplete() {
+    keywordList = keywordList.length > 0 ? keywordList : lsGet('articleKeywordHistory') || []
+    console.log(keywordList);
+    keywordAutoComplete.html('')
+    for (var i in keywordList) {
+        var t = `
+        <div class="line">
+            <div class="text">${keywordList[i]}</div>
+            <div class="del">X</div>
+        </div>
+        `
+        keywordAutoComplete.append(t)
+    }
+    keywordAutoComplete.hide()
+    setKeywordListHeight()
+    autocompleteEvent()
+}
+
+//设置历史记录高度
+function setKeywordListHeight() {
+    var height = 21 * keywordList.length + 4
+    keywordAutoComplete.height(height)
+}
+
+//历史记录点击事件
+function autocompleteEvent() {
+    //点击搜索
+    $('#keywordAutoComplete .line').on('click', function () {
+        var t = $(this).children().eq(0).text()
+        $('#keyword').val(t)
+        $('#keyword').textbox('setText', t)
+        search()
+        keywordAutoComplete.hide()
+    })
+    //点击删除
+    $('#keywordAutoComplete .line .del').on('click', function (e) {
+        var t = $(this).prev().text()
+        keywordListRemoveItem(t)
+        $(this).parent().remove()
+        e.stopPropagation();
+    })
+}
+

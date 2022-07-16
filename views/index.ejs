@@ -16,13 +16,58 @@
             font-size: 20px;
             height: 36px;
         }
+
+        :root {
+            --autocomplete: 178px;
+        }
+
+        .autocomplete {
+            height: 428px;
+            width: var(--autocomplete);
+            position: absolute;
+            z-index: 2;
+            background-color: #fff;
+            border: 1px solid #aaa;
+            left: 64px;
+            margin-top: 2px;
+            display: none;
+        }
+
+        .autocomplete .line {
+            line-height: 16px;
+            font-size: 14px;
+            margin: 5px 0;
+            display: flex;
+        }
+
+        .autocomplete .line:hover {
+            background-color: #c5cfeb;
+            cursor: pointer;
+        }
+
+        .autocomplete .line .text {
+            width: calc(var(--autocomplete) - 20px);
+        }
+
+        .autocomplete .line .del {
+            flex: 1;
+        }
+
+        .autocomplete .line .del:hover {
+            color: red;
+        }
     </style>
 </head>
 
 <body>
-<div class="searchbar">
-    <span>关键字:<input type="text" id="keyword"></span>
-    <span>分类 <select name="fid" id="fid">
+    <div class="searchbar">
+        <div style="display: inline-block; position: relative;">
+            关键字:<input type="text" id="keyword">
+            <div id="keywordAutoComplete" class="autocomplete">
+
+            </div>
+        </div>
+        <span>分类 <select name="fid" id="fid">
                 <option value="15">亚有15</option>
                 <option value="25">国产25</option>
                 <option value="2">亚无2</option>
@@ -31,13 +76,13 @@
                 <option value="4">欧美4</option>
                 <option value="5">动漫5</option>
             </select> </span>
-    <span>
+        <span>
             <button id="searchTraditional">繁体搜索</button>
             <button id="search">搜索</button>
         </span>
-    <span>最后更新:<span id="lastUpdate"></span> </span>
-</div>
-<table id="dg"></table>
+        <span>最后更新:<span id="lastUpdate"></span> </span>
+    </div>
+    <table id="dg"></table>
 </body>
 <script type="text/javascript" src="/javascripts/jquery-easyui-1.9.14/jquery.min.js"></script>
 <script type="text/javascript" src="/javascripts/jquery-easyui-1.9.14/jquery.easyui.min.js"></script>
