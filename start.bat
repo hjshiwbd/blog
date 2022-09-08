@@ -6,6 +6,6 @@ net start mysql80
 ::npm run start
 call pm2 start G:\git\github\blog\bin\www --name t66y
 
-ping -n 5 127.0.0.1 > nul
+ping -n 10 127.0.0.1 > nul
 
 start http://localhost:3000/
