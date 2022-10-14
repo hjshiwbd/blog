@@ -8,13 +8,21 @@ const {
     pager
 } = require('../utils/pager')
 
-const conn = mysql.createConnection({
+let conn = mysql.createConnection({
     host: '127.0.0.1',
     port: 3306,
     database: 'crawler',
     user: 'root',
     password: 'root'
 })
+
+// let conn = mysql.createConnection({
+//     host: 'slave001.yz',
+//     port: 11502,
+//     database: 'test',
+//     user: 'huangj',
+//     password: 'hUaNgj_2020'
+// })
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
