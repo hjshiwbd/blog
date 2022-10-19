@@ -9,13 +9,7 @@ const {
 } = require('../utils/pager')
 
 const confs = {
-    local: {
-        host: '127.0.0.1',
-        port: 3306,
-        database: 'crawler',
-        user: 'root',
-        password: 'root'
-    },
+    local: {},
     online: {}
 }
 
