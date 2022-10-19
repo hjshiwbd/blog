@@ -9,8 +9,20 @@ const {
 } = require('../utils/pager')
 
 const confs = {
-    local: {},
-    online: {}
+    local: {
+        host: '127.0.0.1',
+        port: 3306,
+        database: 'crawler',
+        user: 'root',
+        password: 'root'
+    },
+    online: {
+        host: 'slave001.yz',
+        port: 11502,
+        database: 'test',
+        user: 'huangj',
+        password: 'hUaNgj_2020'
+    }
 }
 
 const envArgs = confs[global.options.mode]
