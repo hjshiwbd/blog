@@ -3,10 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "online": "node ./bin/www --mode online",
+    "local": "node ./bin/www --mode local",
+    "start": "node ./bin/www --mode local",
+    "dev": "nodemon ./bin/www --mode local"
   },
   "dependencies": {
+    "commander": "^9.4.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
