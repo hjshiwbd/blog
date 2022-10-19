@@ -3,7 +3,7 @@ var createError = require('http-errors');
 //命令行参数
 const {Command} = require('commander');
 const program = new Command();
-program.option('--mode <char>', 'mmmmm')
+program.option('--mode <char>', 'mode')
 program.parse()
 global.options = program.opts()
 

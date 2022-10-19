@@ -16,13 +16,7 @@ const confs = {
         user: 'root',
         password: 'root'
     },
-    online: {
-        host: 'slave001.yz',
-        port: 11502,
-        database: 'test',
-        user: 'huangj',
-        password: 'hUaNgj_2020'
-    }
+    online: {}
 }
 
 const envArgs = confs[global.options.mode]
