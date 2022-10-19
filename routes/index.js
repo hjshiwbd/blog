@@ -9,8 +9,7 @@ const {
 } = require('../utils/pager')
 
 const confs = {
-    local: {},
-    online: {}
+
 }
 
 const envArgs = confs[global.options.mode]
