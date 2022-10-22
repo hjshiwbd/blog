@@ -4,7 +4,7 @@ net start mysql80
 
 
 ::npm run start
-call pm2 start G:\git\github\blog\bin\www --name t66y
+call pm2 start G:\git\github\blog\bin\www --name t66y -- --mode local
 
 ping -n 10 127.0.0.1 > nul
 
