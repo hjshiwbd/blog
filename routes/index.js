@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
 // const domain = "http://t66y.com/";
-const domain = "https://cl.2790x.xyz/";
+const domain = "https://cl.2718y.xyz/";
 const {
     pager
 } = require('../utils/pager')
@@ -26,11 +26,11 @@ if (!envArgs) {
 let conn = mysql.createConnection(envArgs)
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
     res.render('index', {});
 });
 
-router.post('/crawlerdata', function (req, res, next) {
+router.post('/crawlerdata', function(req, res, next) {
     const {
         page,
         rows,
@@ -53,8 +53,8 @@ router.post('/crawlerdata', function (req, res, next) {
     const countSql = `select count(*) cc
                       from (${baseSql}) tmp`
     const pageSql = `${baseSql} limit ${p.limit0},${p.pageSize}`
-    const countQuery = conn.query(countSql, sqlParam, function (err, rows1) {
-        const pageQuery = conn.query(pageSql, sqlParam, function (err, rows2) {
+    const countQuery = conn.query(countSql, sqlParam, function(err, rows1) {
+        const pageQuery = conn.query(pageSql, sqlParam, function(err, rows2) {
             res.json({
                 rows: rows2,
                 total: rows1[0].cc
@@ -65,11 +65,11 @@ router.post('/crawlerdata', function (req, res, next) {
     clog("count:", countQuery.sql)
 });
 
-router.post('/lastcrawlerdate', function (req, res, next) {
+router.post('/lastcrawlerdate', function(req, res, next) {
     const baseSql = ` select CONCAT('20', max(date))                                         dd,
                              DATEDIFF(now(), STR_TO_DATE(CONCAT('20', max(date)), '%Y%m%d')) diff
                       from crawler_queue;`
-    const crawlQuery = conn.query(baseSql, {}, function (err, rows1) {
+    const crawlQuery = conn.query(baseSql, {}, function(err, rows1) {
         res.json(rows1[0]);
     })
 });
