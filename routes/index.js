@@ -70,6 +70,10 @@ router.post('/lastcrawlerdate', function(req, res, next) {
                              DATEDIFF(now(), STR_TO_DATE(CONCAT('20', max(date)), '%Y%m%d')) diff
                       from crawler_queue;`
     const crawlQuery = conn.query(baseSql, {}, function(err, rows1) {
+        if (err) {
+            throw new Error(err)
+        }
+        console.log(rows1)
         res.json(rows1[0]);
     })
 });
