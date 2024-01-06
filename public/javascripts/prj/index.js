@@ -2,6 +2,7 @@ const clog = console.log
 const keywordAutoComplete = $('#keywordAutoComplete')//自动完成
 let keywordList = []
 const maxHistory = 20
+const keywordEle = $('#keyword')
 
 $(function () {
     const url = '/crawlerdata'
@@ -14,7 +15,10 @@ $(function () {
         title: 'title',
         width: 80,
         formatter(value, row) {
-            return `<a target="_blank" rel="noreferrer" href="${row.link}">${row.title}</a>`
+            const v = keywordEle.val()
+            // 正则替换所有v
+            const txt = row.title.replace(new RegExp(v, 'g'), `<span style="color:red">${v}</span>`)
+            return `<a target="_blank" rel="noreferrer" href="${row.link}">${txt}</a>`
         }
     }, {
         field: 'post_date',
@@ -46,18 +50,18 @@ $(function () {
     $('#dg').datagrid(options)
     //搜索
     $("#search").on('click', function () {
-        const keyword = $('#keyword').val()
-        $('#keyword').textbox('setValue', simplized(keyword))
+        const keyword = keywordEle.val()
+        keywordEle.textbox('setValue', simplized(keyword))
         search()
     })
     //繁体搜索
     $('#searchTraditional').on('click', function () {
-        const keyword = $('#keyword').val()
-        $('#keyword').textbox('setValue', traditionalized(keyword))
+        const keyword = keywordEle.val()
+        keywordEle.textbox('setValue', traditionalized(keyword))
         search()
     })
     //输入框清空"x"按钮
-    $('#keyword').textbox({
+    keywordEle.textbox({
         icons: [{
             iconCls: 'icon-clear',
             handler(e) {
@@ -66,11 +70,11 @@ $(function () {
         }]
     })
     //点击显示历史搜索记录
-    $('#keyword').textbox('textbox').on('click', () => {
+    keywordEle.textbox('textbox').on('click', () => {
         keywordAutoComplete.show();
     })
     //输入框键盘事件
-    $('#keyword').textbox('textbox').on('keyup', (e) => {
+    keywordEle.textbox('textbox').on('keyup', (e) => {
         //回车搜索
         if (e.which === 13) {
             search()
@@ -99,7 +103,7 @@ $(function () {
 
 //执行搜索
 function search() {
-    const keyword = $('#keyword').val()
+    const keyword = keywordEle.val()
     keywordListAddItem(keyword)
     const fid = $('#fid').combobox('getValues')
     fillAutoComplete()
@@ -182,8 +186,8 @@ function autocompleteEvent() {
     //点击搜索
     $('#keywordAutoComplete .line').on('click', function () {
         var t = $(this).children().eq(0).text()
-        $('#keyword').val(t)
-        $('#keyword').textbox('setText', t)
+        keywordEle.val(t)
+        keywordEle.textbox('setText', t)
         search()
         keywordAutoComplete.hide()
     })

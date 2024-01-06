@@ -17,13 +17,15 @@
  * @param cols
  * @param  isLoad
  * @param customHeight 自定义高度
+ * @param option
  * @returns
  */
 function dgSetting1({
     url,
     cols,
     isLoad,
-    customHeight
+    customHeight,
+    option = {}
 }) {
     var col = formatCols(cols);
     isLoad = isLoad === undefined ? true : isLoad;
@@ -60,6 +62,7 @@ function dgSetting1({
         //     // 点击row不会高亮
         //     $(this).datagrid('clearSelections');
         // }
+        ...option
     };
     if (url) {
         o.url = url;
