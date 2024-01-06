@@ -16,8 +16,8 @@ $(function () {
         width: 80,
         formatter(value, row) {
             const v = keywordEle.val()
-            // 正则替换所有v
-            const txt = row.title.replace(new RegExp(v, 'g'), `<span style="color:red">${v}</span>`)
+            // 正则替换所有v, 不区分大小写
+            const txt = value.replace(new RegExp(v, 'ig'), `<span style="color:red">${v}</span>`)
             return `<a target="_blank" rel="noreferrer" href="${row.link}">${txt}</a>`
         }
     }, {
