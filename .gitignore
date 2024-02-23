@@ -3,3 +3,4 @@ node_modules
 lock.json
 package-lock.json
 temps
+logs
