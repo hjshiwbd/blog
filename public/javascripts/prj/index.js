@@ -15,9 +15,7 @@ $(function () {
         title: 'title',
         width: 80,
         formatter(value, row) {
-            const v = keywordEle.val()
-            // 正则替换所有v, 不区分大小写
-            const txt = value.replace(new RegExp(v, 'ig'), `<span style="color:red">${v}</span>`)
+            const txt = replaceHightlight(value);
             return `<a target="_blank" rel="noreferrer" href="${row.link}">${txt}</a>`
         }
     }, {
@@ -200,3 +198,13 @@ function autocompleteEvent() {
     })
 }
 
+function replaceHightlight(value) {
+    const v = keywordEle.val()
+    // 正则替换所有v, 不区分大小写
+    const arr = v.split(' ');
+    arr.forEach(s=>{
+        value = value.replace(new RegExp(s, 'ig'), `<span style="color:red">${v}</span>`)
+    })
+    return value
+
+}
