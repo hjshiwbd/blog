@@ -4,7 +4,7 @@ const router = express.Router();
 const mysql = require('mysql');
 // const domain = "http://t66y.com/";
 // const domain = "https://cl.2718y.xyz/";
-const domain = "https://cl.2167y.xyz/";
+const domain = "https://cl.8278x.xyz/";
 const {
     pager
 } = require('../utils/pager')
