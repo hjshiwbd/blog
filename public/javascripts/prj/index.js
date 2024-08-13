@@ -202,8 +202,8 @@ function replaceHightlight(value) {
     const v = keywordEle.val()
     // 正则替换所有v, 不区分大小写
     const arr = v.split(' ');
-    arr.forEach(s=>{
-        value = value.replace(new RegExp(s, 'ig'), `<span style="color:red">${v}</span>`)
+    arr.forEach(s => {
+        value = value.replace(new RegExp(s, 'ig'), `<span style="color:red">${s}</span>`)
     })
     return value
 
