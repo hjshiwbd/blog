@@ -2,7 +2,7 @@
   <id>blogserver</id>
   <name>blogserver</name>
   <description>blogserver</description>
-  <executable>H:\git\github\blog\start2.bat</executable>
-  <logpath>H:\git\github\blog\logs</logpath>
+  <executable>d:\git\github\blog\start2.bat</executable>
+  <logpath>d:\git\github\blog\logs</logpath>
   <log mode="roll"></log>
 </service>
