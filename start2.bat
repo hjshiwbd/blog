@@ -1,3 +1,3 @@
 @echo off
-cd h:\git\github\blog\
+cd d:\git\github\blog\
 npm run local

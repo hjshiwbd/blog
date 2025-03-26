@@ -1,7 +1,7 @@
 const clog = console.log
 const express = require('express');
 const router = express.Router();
-const mysql = require('mysql');
+const mysql = require('mysql2');
 // const domain = "http://t66y.com/";
 // const domain = "https://cl.2718y.xyz/";
 const domain = "https://cf.pexnfb.vip/";
@@ -15,7 +15,7 @@ const confs = {
         port: 3306,
         database: 'crawler',
         user: 'root',
-        password: 'root'
+        password: '123456'
     },
     online: {}
 }
