@@ -1,7 +1,7 @@
 const clog = console.log
 const keywordAutoComplete = $('#keywordAutoComplete')//自动完成
 let keywordList = []
-const maxHistory = 20
+const maxHistory = 500
 const keywordEle = $('#keyword')
 
 $(function () {
@@ -175,7 +175,8 @@ function fillAutoComplete() {
 
 //设置历史记录高度
 function setKeywordListHeight() {
-    var height = 21 * keywordList.length + 4
+    var height = 21 * keywordList.length + 6
+    height = height > 400 ? 400 : height
     keywordAutoComplete.height(height)
 }
 
